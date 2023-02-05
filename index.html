@@ -8,18 +8,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header></header>
-    <table border="1" id="teams">
-      <thead>
-        <tr>
-          <th>Group</th>
-          <th>Members</th>
-          <th>Project Name</th>
-          <th>Project URL</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-      <!-- <tfoot>
+    <header>
+      <div id="header-wrapper">
+        <img src="teamsNetworking.png" alt="teams" id="picture" />
+        <div id="header-info">
+          <h1>Teams Networking</h1>
+          <div id="subTitle">
+            <p>
+              <strong>CRUD</strong>
+              operations example (<strong>C</strong>reate,
+              <strong>R</strong>ead, <strong>U</strong>pdate,
+              <strong>D</strong>elete)
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section>
+      <table border="1" id="teams">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Members</th>
+            <th>Project Name</th>
+            <th>Project URL</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <!-- <tfoot>
         <tr>
           <td>soon...</td>
           <td>soon...</td>
@@ -27,9 +43,16 @@
           <td>soon...</td>
         </tr>
       </tfoot> -->
-    </table>
+      </table>
+    </section>
 
     <script src="index.js"></script>
-    <footer></footer>
+    <footer>
+      <a href="https://github.com/nmatei/node-api" target="_blank">API Docs</a>
+      |
+      <a href="https://github.com/fioip/teams-networking" target="_blank"
+        >Source Code</a
+      >
+    </footer>
   </body>
 </html>
