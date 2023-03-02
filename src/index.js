@@ -66,6 +66,7 @@ function initEvents() {
   form.addEventListener("submit", onSubmit);
 
   document.querySelector("#teams tbody").addEventListener("click", e => {
+    console.info("test");
     if (e.target.matches("a")) {
       const id = e.target.dataset.id;
       deleteTeamRequest(id).then(status => {
