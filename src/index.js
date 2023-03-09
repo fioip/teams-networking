@@ -14,19 +14,23 @@ fetch("http://localhost:3000/teams-json", {
     displayTeams(teams);
   });
 
-function createTeamRequest() {
+function createTeamRequest(team) {
   return fetch("http://localhost:3000/teams-json/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      promotion: document.getElementById("promotion").value,
-      members: document.getElementById("members").value,
-      name: document.getElementById("name").value,
-      url: document.getElementById("url").value
-    })
+    body: JSON.stringify(team)
   }).then(r => r.json());
+}
+
+function readTeam() {
+  return {
+    promotion: document.getElementById("promotion").value,
+    members: document.getElementById("members").value,
+    name: document.getElementById("name").value,
+    url: document.getElementById("url").value
+  };
 }
 
 function deleteTeamRequest(id) {
@@ -63,7 +67,8 @@ function onSubmit(e) {
   if (editID) {
     console.warn("UPDATE", editID);
   } else {
-    createTeamRequest().then(status => {
+    const team = readTeam();
+    createTeamRequest(team).then(status => {
       if (status.success) {
         window.location.reload();
       }
