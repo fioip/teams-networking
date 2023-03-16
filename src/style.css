@@ -80,6 +80,7 @@ input {
   width: 100%;
   border: 5px solid #cbe4de;
   padding: 4px;
+  font-size: 16px;
 }
 
 ::placeholder {

@@ -1,18 +1,14 @@
 let allTeams = [];
 let editID;
 
-fetch("http://localhost:3000/teams-json", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json"
-  }
-})
-  .then(r => r.json())
-  .then(teams => {
-    // window.teams = teams;
-    allTeams = teams;
-    displayTeams(teams);
-  });
+function loadTeamsRequest() {
+  return fetch("http://localhost:3000/teams-json", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(r => r.json());
+}
 
 function createTeamRequest(team) {
   return fetch("http://localhost:3000/teams-json/create", {
@@ -34,6 +30,16 @@ function updateTeamRequest(team) {
   }).then(r => r.json());
 }
 
+function deleteTeamRequest(id) {
+  return fetch("http://localhost:3000/teams-json/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ id })
+  }).then(r => r.json());
+}
+
 function readTeam() {
   return {
     promotion: document.getElementById("promotion").value,
@@ -48,16 +54,6 @@ function writeTeam(team) {
   document.getElementById("members").value = team.members;
   document.getElementById("name").value = team.name;
   document.getElementById("url").value = team.url;
-}
-
-function deleteTeamRequest(id) {
-  return fetch("http://localhost:3000/teams-json/delete", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ id })
-  }).then(r => r.json());
 }
 
 function getTeamsHTML(teams) {
@@ -84,6 +80,14 @@ function displayTeams(teams) {
   document.querySelector("#teams tbody").innerHTML = getTeamsHTML(teams);
 }
 
+function loadTeams() {
+  loadTeamsRequest().then(teams => {
+    // window.teams = teams;
+    allTeams = teams;
+    displayTeams(teams);
+  });
+}
+
 function onSubmit(e) {
   e.preventDefault();
 
@@ -93,7 +97,13 @@ function onSubmit(e) {
     team.id = editID;
     updateTeamRequest(team).then(status => {
       if (status.success) {
-        window.location.reload();
+        // /https://github.com/fioip/fioip.github.io
+        //load new teams
+        loadTeams();
+        //TODO - don't load teams
+
+        //displayTeams(allTeams);
+        e.target.reset();
       }
     });
   } else {
@@ -142,4 +152,5 @@ function initEvents() {
   });
 }
 
+loadTeams();
 initEvents();
