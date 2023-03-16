@@ -31,8 +31,9 @@ body {
 }
 
 #pic {
-  height: 140px;
+  height: 200px;
   padding: 10px;
+  display: block;
 }
 
 #header-info {
