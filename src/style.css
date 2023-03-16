@@ -1,23 +1,36 @@
-body {
-  margin: 0px;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: aliceblue;
+* {
+  box-sizing: border-box;
 }
 
-header {
-  padding: 0px;
+html {
+  height: 100%;
+  font-family: "Georgia";
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+#main {
+  flex: 2;
+  padding-top: 1%;
 }
 
 #header-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: linear-gradient(45deg, rgb(99, 134, 247), rgb(45, 92, 246), rgb(5, 47, 184));
+  background: #2c3333;
 }
 
-#picture {
+#pic {
   height: 140px;
   padding: 10px;
 }
@@ -36,27 +49,51 @@ header {
 }
 
 table {
-  width: 100%;
-  padding: 10px;
-}
-
-tr:nth-child(even) {
-  background-color: #55c3f6;
-}
-
-#teams {
+  border-collapse: collapse;
   width: 100%;
 }
 
-#teams th,
-#teams td {
-  border: 1px solid #29a7e1;
-  padding: 5px;
+table td,
+table th {
+  padding: 12px 15px;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 20px;
+}
+
+table th,
+tfoot {
+  background-color: #2e4f4f;
+  color: white;
+}
+
+table tbody tr {
+  background-color: #cbe4de;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+input {
+  width: 100%;
+  border: 3px solid #cbe4de;
+  padding: 4px;
+}
+
+.remove-btn:hover {
+  color: red;
+  text-decoration: underline 1px red;
+}
+
+.edit-btn:hover {
+  color: rgb(10, 200, 10);
+  text-decoration: underline 1px rgb(10, 200, 10);
 }
 
 footer {
   width: 100%;
-  background: linear-gradient(45deg, rgb(99, 134, 247), rgb(45, 92, 246), rgb(5, 47, 184));
+  background: #2c3333;
   padding: 10px;
   text-align: center;
   color: white;
@@ -82,22 +119,4 @@ footer a:hover {
   background: white;
   color: rgb(45, 92, 246);
   transition: 0.5s;
-}
-
-input {
-  width: 100%;
-  margin: 5px 0px 5px 0px;
-  border-radius: 10px;
-  border: 3px solid navy;
-  padding: 4px;
-}
-
-.remove-btn:hover {
-  color: red;
-  text-decoration: underline 1px red;
-}
-
-.edit-btn:hover {
-  color: rgb(0, 159, 0);
-  text-decoration: underline 1px rgb(0, 159, 0);
 }
