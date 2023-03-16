@@ -27,7 +27,7 @@ body {
   left: 0;
   width: 100%;
   display: flex;
-  background: #2c3333;
+  background: #1d3030;
 }
 
 #pic {
@@ -78,8 +78,14 @@ table tbody tr:nth-child(even) {
 
 input {
   width: 100%;
-  border: 3px solid #cbe4de;
+  border: 5px solid #cbe4de;
   padding: 4px;
+}
+
+::placeholder {
+  color: #2e4f4f;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .remove-btn:hover {
@@ -94,7 +100,7 @@ input {
 
 footer {
   width: 100%;
-  background: #2c3333;
+  background: #1d3030;
   padding: 10px;
   text-align: center;
   color: white;
