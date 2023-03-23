@@ -97,7 +97,6 @@ function onSubmit(e) {
     team.id = editID;
     updateTeamRequest(team).then(status => {
       if (status.success) {
-        // /https://github.com/fioip/fioip.github.io
         //load new teams
         loadTeams();
         //TODO - don't load teams
@@ -121,6 +120,7 @@ function onSubmit(e) {
         //2. stergem datele din inputuri
         // writeTeam({ promotion: " ", members: "", name: "", url: "" });
         e.target.reset();
+        editID = undefined;
       }
     });
   }
@@ -136,6 +136,9 @@ function prepareEdit(id) {
 function initEvents() {
   const form = document.getElementById("editForm");
   form.addEventListener("submit", onSubmit);
+  form.addEventListener("reset", () => {
+    editID = undefined;
+  });
 
   document.querySelector("#teams tbody").addEventListener("click", e => {
     if (e.target.matches("a.remove-btn")) {
