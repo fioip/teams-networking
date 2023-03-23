@@ -107,13 +107,15 @@ function onSubmit(e) {
         //load new teams
         // loadTeams();
 
-        allTeams = [...allTeams];
-        const editedTeam = allTeams.find(team => team.id === editID);
-        console.warn("edited team: ", editedTeam, team);
-        editedTeam.promotion = team.promotion;
-        editedTeam.members = team.members;
-        editedTeam.name = team.name;
-        editedTeam.url = team.url;
+        allTeams = allTeams.map(t => {
+          if (t.id === team.id) {
+            return {
+              ...t,
+              ...team
+            };
+          }
+          return t;
+        });
 
         displayTeams(allTeams);
         e.target.reset();
