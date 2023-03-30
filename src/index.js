@@ -1,3 +1,6 @@
+import { sleep } from "./utilities";
+// const utilities = require("./utilities");
+
 let allTeams = [];
 let editID;
 
@@ -136,7 +139,6 @@ function onSubmit(e) {
         //2. stergem datele din inputuri
         // writeTeam({ promotion: " ", members: "", name: "", url: "" });
         e.target.reset();
-        editID = undefined;
       }
     });
   }
@@ -162,6 +164,7 @@ function initEvents() {
       deleteTeamRequest(id).then(status => {
         if (status.success) {
           loadTeams();
+          // TODO homework: don't load all teams...
         }
       });
     } else if (e.target.matches("a.edit-btn")) {
@@ -173,3 +176,17 @@ function initEvents() {
 
 loadTeams();
 initEvents();
+
+// TODO: move in external file
+console.info("SLEEP1");
+sleep(2000).then(r => {
+  console.info("done1", r);
+});
+console.warn("After sleep");
+
+//self-invoked function
+(async () => {
+  console.info("SLEEP2");
+  var r2 = await sleep(5000);
+  console.warn("done2", r2);
+})();
