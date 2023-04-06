@@ -1,6 +1,6 @@
-import debounce from "lodash/debounce";
+// import debounce from "lodash/debounce";
 import { loadTeamsRequest, createTeamRequest, updateTeamRequest, deleteTeamRequest } from "./requests";
-import { $, sleep } from "./utilities";
+import { $, sleep, debounce } from "./utilities";
 // const utilities = require("./utilities");
 
 let allTeams = [];
@@ -120,7 +120,7 @@ function initEvents() {
     debounce(e => {
       const teams = searchTeams(e.target.value);
       displayTeams(teams);
-      console.info("search");
+      console.warn("search");
     }, 300)
   );
 
