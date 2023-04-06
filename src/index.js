@@ -60,7 +60,7 @@ function loadTeams() {
   });
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
 
   const team = readTeam();
@@ -87,22 +87,21 @@ function onSubmit(e) {
       }
     });
   } else {
-    createTeamRequest(team).then(status => {
-      if (status.success) {
-        //1. adaugam datele in tabel
-        //  1.0 adaug id in team
-        team.id = status.id;
+    const status = await createTeamRequest(team);
+    if (status.success) {
+      //1. adaugam datele in tabel
+      //  1.0 adaug id in team
+      team.id = status.id;
 
-        //  1.1 adaug team in allTeams
-        allTeams = [...allTeams, team];
-        //allTeams = [...allTeams, team];
-        //  1.2. apelam displayTeams(allTeams)
-        displayTeams(allTeams);
-        //2. stergem datele din inputuri
-        // writeTeam({ promotion: " ", members: "", name: "", url: "" });
-        e.target.reset();
-      }
-    });
+      //  1.1 adaug team in allTeams
+      allTeams = [...allTeams, team];
+      //allTeams = [...allTeams, team];
+      //  1.2. apelam displayTeams(allTeams)
+      displayTeams(allTeams);
+      //2. stergem datele din inputuri
+      // writeTeam({ promotion: " ", members: "", name: "", url: "" });
+      e.target.reset();
+    }
   }
 }
 
