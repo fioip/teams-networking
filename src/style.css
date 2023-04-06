@@ -128,3 +128,9 @@ footer a:hover {
   color: rgb(45, 92, 246);
   transition: 0.5s;
 }
+
+#search {
+  width: 200px;
+  margin-left: 15px;
+  margin-bottom: 7px;
+}

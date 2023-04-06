@@ -1,5 +1,5 @@
 import { loadTeamsRequest, createTeamRequest, updateTeamRequest, deleteTeamRequest } from "./requests";
-import { sleep } from "./utilities";
+import { $, sleep } from "./utilities";
 // const utilities = require("./utilities");
 
 let allTeams = [];
@@ -45,7 +45,6 @@ let oldDisplayTeams;
 
 function displayTeams(teams) {
   if (oldDisplayTeams === teams) {
-    console.warn("same teams to display", oldDisplayTeams, teams);
     return;
   }
   oldDisplayTeams = teams;
@@ -102,14 +101,26 @@ function prepareEdit(id) {
   writeTeam(team);
 }
 
+function searchTeams(search) {
+  return allTeams.filter(team => {
+    return team.promotion.indexOf(search) > -1;
+  });
+}
+
 function initEvents() {
-  const form = document.getElementById("editForm");
+  const form = $("#editForm");
   form.addEventListener("submit", onSubmit);
   form.addEventListener("reset", () => {
     editID = undefined;
   });
 
-  document.querySelector("#teams tbody").addEventListener("click", async e => {
+  $("#search").addEventListener("input", e => {
+    const teams = searchTeams(e.target.value);
+    displayTeams(teams);
+    console.info("search");
+  });
+
+  $("#teams tbody").addEventListener("click", async e => {
     if (e.target.matches("a.remove-btn")) {
       const id = e.target.dataset.id;
 
@@ -129,15 +140,15 @@ loadTeams();
 initEvents();
 
 // TODO: move in external file
-console.info("SLEEP1");
-sleep(2000).then(r => {
-  console.info("done1", r);
-});
-console.warn("After sleep");
+// console.info("SLEEP1");
+// sleep(2000).then(r => {
+//   console.info("done1", r);
+// });
+// console.warn("After sleep");
 
-//self-invoked function
-(async () => {
-  console.info("SLEEP2");
-  var r2 = await sleep(5000);
-  console.warn("done2", r2);
-})();
+// //self-invoked function
+// (async () => {
+//   console.info("SLEEP2");
+//   var r2 = await sleep(5000);
+//   console.warn("done2", r2);
+// })();
